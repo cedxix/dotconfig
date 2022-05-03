@@ -1,0 +1,16 @@
+pane	0	0	1	:*	0	:/Users/cedricanidie/projects	0	nvim	:nvim
+pane	0	0	1	:*	1	:/Users/cedricanidie/projects	0	zsh	:
+pane	0	0	1	:*	2	:/Users/cedricanidie/projects	1	zsh	:
+pane	0	0	1	:*	3	:/Users/cedricanidie/projects/web-app-auth	0	zsh	:
+pane	2	0	1	:*	0	:/Users/cedricanidie	1	zsh	:
+pane	3	0	1	:*	0	:/Users/cedricanidie	1	zsh	:
+pane	4	0	1	:*	0	:/Users/cedricanidie/projects	1	zsh	:
+pane	5	0	1	:*	0	:/Users/cedricanidie	1	zsh	:
+pane	6	0	1	:*	0	:/Users/cedricanidie	1	zsh	:
+window	0	0	:zsh	1	:*	ecbc,228x77,0,0[228x65,0,0,1,228x11,0,66{74x11,0,66,2,78x11,75,66,9,74x11,154,66,3}]	:
+window	2	0	:zsh	1	:*	d121,220x59,0,0,4	:
+window	3	0	:zsh	1	:*	d122,220x59,0,0,5	:
+window	4	0	:zsh	1	:*	d123,220x59,0,0,6	:
+window	5	0	:zsh	1	:*	d124,220x59,0,0,7	:
+window	6	0	:zsh	1	:*	d125,220x59,0,0,8	:
+state	0	4

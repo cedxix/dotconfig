@@ -1,0 +1,71 @@
+[user]
+	email = cedric_anidie@trendmicro.com
+	user = Cedric D. Anidie
+	name = Cedric D. Anidie
+[diff "astextplain"]
+	textconv = astextplain
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[core]
+	autocrlf = input
+	fscache = true
+	symlinks = false
+	editor = nvim
+[credential]
+	helper = store --file ~/.my-credentials
+[color]
+	ui = auto
+[alias]
+	aa = add --all
+	ai = add -i
+	#############
+	gs = status
+	#############
+        c = commit
+        co = checkout
+        ca = commit --amend
+	#############
+	d = difftool
+	dfc = d --name-status
+	fc = gl --name-only
+	#############
+	f = fetch
+	fa = fetch --all
+	#############
+	l = log --oneline --decorate
+	gl = log --first-parent --graph --pretty=format:'[%C(yellow)%h%Creset] -%C(auto)%d%Creset %s %C(cyan)(%cr) %C(bold green)<%aN>%Creset' --abbrev-commit --date=relative --oneline
+	gls = log --graph --decorate --stat
+	t = log --graph --decorate --abbrev-commit --date=relative --oneline
+	############
+	m = merge
+	ma = merge --abort
+	###########
+        p = push
+        pu = push -u
+        pfl = push --force-with-lease
+	#############
+	pl = pull
+	plo = pull origin
+	pr = pull --rebase
+	############
+	r = rebase
+	###########
+	b = branch
+	ba = branch --all
+	br = branch --remote --all
+	###########
+	drelease = git log --left-right --graph --cherry-pick --oneline develop...master
+	dc = git log --left-right --graph --cherry-pick --oneline 
+[mergetool]
+	keepBackup = false
+	tool=kdiff3
+[diff]
+	tool = kdiff3
+	keepBackup = false
+[difftool]
+	prompt = false
+[init]
+	defaultBranch = main

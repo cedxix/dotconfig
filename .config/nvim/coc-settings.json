@@ -1,0 +1,28 @@
+{
+  "suggest.maxCompleteItemCount": 20,
+  "suggest.autoTrigger":"always",
+  "suggest.enablePreview": true,
+  "diagnostic.errorSign": "•",
+  "diagnostic.warningSign": "!",
+  "diagnostic.infoSign": "•",
+  "typescript.updateImportsOnFileMove.enable": true,
+  "javascript.updateImportsOnFileMove.enable": true,
+  "coc.preferences.bracketEnterImprove": true,
+  "coc.preferences.messageLevel": "error",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "markdown",
+    "typescript",
+    "typescriptreact",
+    "javascript",
+    "javascriptreact"
+  ],
+  "emmet.optimizeStylesheetParsing": true,
+  "emmet.showExpandedAbbreviation": "always",
+  "emmet.showAbbreviationSuggestions": true,
+  "emmet.includeLanguages": {"javascript":"javascriptreact"},
+  "emmet.showSuggestionsAsSnippets": true,
+  "emmet.excludeLanguages": [
+    "markdown"
+  ]
+}

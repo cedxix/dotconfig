@@ -1,0 +1,15 @@
+pane	0	0	1	:*	0	:/Users/cedricanidie/projects	1	nvim	:nvim .
+pane	0	0	1	:*	1	:/Users/cedricanidie/projects	0	bash	:/bin/sh ./rebuild-app.sh web-app-mgmt-console true
+pane	0	0	1	:*	2	:/Users/cedricanidie/projects/web-app-mgmt-console	0	zsh	:
+pane	2	0	1	:*	0	:/Users/cedricanidie	1	zsh	:
+pane	3	0	1	:*	0	:/Users/cedricanidie	1	zsh	:
+pane	4	0	1	:*	0	:/Users/cedricanidie/projects	1	zsh	:
+pane	5	0	1	:*	0	:/Users/cedricanidie	1	zsh	:
+pane	6	0	1	:*	0	:/Users/cedricanidie	1	zsh	:
+window	0	0	:nvim	1	:*	9877,316x84,0,0[316x60,0,0,1,316x23,0,61{146x23,0,61,2,169x23,147,61,3}]	:
+window	2	0	:zsh	1	:*	cd61,291x86,0,0,4	:
+window	3	0	:zsh	1	:*	cd62,291x86,0,0,5	:
+window	4	0	:zsh	1	:*	cd63,291x86,0,0,6	:
+window	5	0	:zsh	1	:*	cd64,291x86,0,0,7	:
+window	6	0	:zsh	1	:*	cd65,291x86,0,0,8	:
+state	0	4
