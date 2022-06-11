@@ -1,6 +1,3 @@
-"
-" https://medium.com/geekculture/neovim-configuration-for-beginners-b2116dbbde84
-" set encoding=utf-8
 set nocompatible            " disable compatibility to old-time vi
 syntax on                   " syntax highlighting
 set showmatch               " show matching 
@@ -53,6 +50,7 @@ call plug#begin('~/.nvim/plugged')
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'morhetz/gruvbox'
 Plug 'sainnhe/gruvbox-material'
+" Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
@@ -66,19 +64,13 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'https://github.com/adelarsq/vim-matchit'
 Plug 'vim-utils/vim-man'
-Plug 'kien/ctrlp.vim'
+" Plug 'kien/ctrlp.vim'
 Plug 'mbbill/undotree'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'mogelbrod/vim-jsonpath'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'airblade/vim-gitgutter'
-" if has('nvim') || has('patch-8.0.902')
-"   Plug 'mhinz/vim-signify'
-" else
-"   Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
-" endif
-" Plug 'mhinz/vim-signify'
-" Plug 'vim-scripts/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
+Plug 'lewis6991/gitsigns.nvim'
 " status bar
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -93,7 +85,6 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'SirVer/ultisnips'
 Plug 'mlaursen/vim-react-snippets'
 Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
-Plug 'Xuyuanp/scrollbar.nvim'
 " Plug 'justinmk/vim-sneak'
 Plug 'gko/vim-coloresque'
 Plug 'elzr/vim-json'
@@ -103,8 +94,40 @@ Plug 'heavenshell/vim-jsdoc', { 'for': ['javascript', 'javascript.jsx','typescri
 Plug 'ruanyl/vim-gh-line'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'sindresorhus/focus', {'rtp': 'vim'}
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'robbyrussell/oh-my-zsh'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
+" Telescope
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+" Plug 'nvim-telescope/telescope-github.nvim'
+" brew install fd
+" brew install ripgrep
+Plug 'nvim-telescope/telescope-file-browser.nvim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'easymotion/vim-easymotion'
+Plug 'NTBBloodbath/rest.nvim'
+Plug 'ggandor/lightspeed.nvim'
+Plug 'vim-test/vim-test'
 
 call plug#end()
+
+" ============================================================================================
+" ================================ LUA CONFIG ================================================
+
+lua << EOF
+require('gitsigns').setup{
+  attach_to_untracked = true,
+  current_line_blame = true 
+}
+EOF
+
+" ============================================================================================
+" Disable netrw
+let loaded_netrwPlugin = 1
 
 " Signify
 let g:signify_realtime = 1
@@ -121,6 +144,13 @@ let g:minimap_width = 10
 let g:minimap_auto_start = 0
 let g:minimap_auto_start_win_enter = 1
 let g:minimap_git_colorlet = 1
+
+" Dev Icons
+" loading the plugin
+let g:webdevicons_enable = 1
+
+" Vim test
+let g:test#javascript#runner = 'jest'
 
 " Netrw
 " let g:netrw_liststyle = 3
@@ -244,9 +274,9 @@ nnoremap <silent><S-Esc> :cclose <CR>
 " open file in a text by placing text and gf
 nnoremap gf :vert winc f<cr>
 " copies filepath to clipboard by pressing yf
-nnoremap <silent> yf :let @+=expand('%:p')<CR>
+nnoremap <silent><leader> yf :let @+=expand('%:p')<CR>
 " copies pwd to clipboard: command yd
-nnoremap <silent> yd :let @+=expand('%:p:h')<CR>
+nnoremap <silent><leader> yd :let @+=expand('%:p:h')<CR>
 " Vim jump to the last position when reopening a file
 "   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
 " if has("autocmd")
@@ -264,7 +294,7 @@ nnoremap <silent> yd :let @+=expand('%:p:h')<CR>
 
 " UndotreeShow
 "Coc"
-let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier']
+let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-jest']
 " GoTo code navigation.
 nmap <silent><leader>gd <Plug>(coc-definition)
 nmap <silent><leader>gy <Plug>(coc-type-definition)
@@ -284,14 +314,10 @@ inoremap <silent><expr> <c-@> coc#refresh()
 " Highlight the symbol and its references when holding the cursor.
 " autocmd CursorHold * silent call CocActionAsync('highlight')
 " format code
-xnoremap <leader>f <Plug>(coc-format-selected)
-nnoremap <leader>f <Plug>(coc-format-selected)
-" Formatting selected code.
-xmap <leader>f <Plug>(coc-format-selected)
 nmap <leader>f <Plug>(coc-format-selected)
+vmap <leader>f <Plug>(coc-format-selected)
 " Prettier
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
-nmap <leader>f  <Plug>(coc-format-selected)
 " refactor rename
 nmap <leader>rf <Plug>(coc-rename)
 " Coc JSON support
@@ -310,23 +336,29 @@ let NERDTreeDirArrows = 1
 let NERDTreeShowHidden=1
 let NERDTreeWinSize=50
 let NERDTreeHijackNetrw=0
-nnoremap <leader>n :NERDTreeFocus<CR>
-" nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
+
+" Start NERDTree. If a file is specified, move the cursor to its window.
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+"
+" lua require'nvim-tree'.setup { }
+" 
+" nnoremap <C-t> :NvimTreeToggle<CR>
+" nnoremap <leader>tr :NvimTreeRefresh<CR>
+" nnoremap <C-f> :NvimTreeFindFileToggle<CR>
 
 " Open the existing NERDTree on each new tab.
 " autocmd BufWinEnter * if getcmdwintype() == '' | silent ieeMirror | endif
 
 " vimWiki 
 let g:vimwiki_list = [{'path': '~/wiki/', 'syntax': 'markdown', 'ext': '.md'}]
-let g:vimwiki_map_prefix = '<leader>v'
+let g:vimwiki_map_prefix = '<leader>w'
 nmap <silent><leader>ww <Plug>VimwikiIndex
-nmap <silent><leader>wl <Plug>VimwikiUISelect
-nmap <silent><leader>wt <Plug>VimwikiToggleListItem
-nmap <silent><leader>wn <Plug>VimwikiMakeTabDiaryNote
-nmap <silent><leader>wnp <Plug>VimwikiMakeYesterdayTabDiaryNote
-nmap <silent><leader>wnn <Plug>VimwikiMakeTomorrowTabDiaryNote
+nmap <silent><leader>wl <Plug>VimwikiDiaryIndex
+nmap <silent><leader>nn <Plug>VimwikiMakeDiaryNote
 
 " Git
 " Git status
@@ -334,6 +366,36 @@ nmap <leader>gs :G<CR>
 nmap <leader>g[ :diffget //2<CR> 
 nmap <leader>g] :diffget //3<CR> 
 nmap <leader>grm :G pull --rebase origin master<CR> 
+
+" Git gutter
+nmap <leader>h] <Plug>(GitGutterNextHunk)
+nmap <leader>h[ <Plug>(GitGutterPrevHunk)
+nmap <leader>hh <Plug>(GitGutterLineHighlightsToggle)<CR>
+
+" React refactor
+xmap <leader>r  <Plug>(coc-codeaction-selected)
+nmap <leader>r  <Plug>(coc-codeaction-selected)
+
+" Telescope
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" JsonPath
+let g:jsonpath_register = '*'
+au FileType json noremap <buffer> <silent> <leader>j? :call jsonpath#echo()<CR>
+au FileType json noremap <buffer> <silent> <leader>j/ :call jsonpath#goto()<CR>
+
+" Run jest for current project
+command! -nargs=0 Jest :call  CocAction('runCommand', 'jest.projectTest')
+" Run jest for current file
+command! -nargs=0 JestCurrent :call  CocAction('runCommand', 'jest.fileTest', ['%'])
+" Run jest for current test
+nnoremap <leader>te :call CocAction('runCommand', 'jest.singleTest')<CR>
+" Init jest in current cwd, require global jest command exists
+command! JestInit :call CocAction('runCommand', 'jest.init')
 
 " Git gutter
 " let g:gitgutter_diff_relative_to = 'working_tree'

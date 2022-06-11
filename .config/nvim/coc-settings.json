@@ -1,15 +1,20 @@
 {
+  "coc.preferences.enableMarkdown": true,
+  "html.hover.documentation": true,
+  "javascript.suggest.jsdoc.generateReturns": true,
   "suggest.maxCompleteItemCount": 20,
   "suggest.autoTrigger":"always",
   "suggest.enablePreview": true,
   "diagnostic.errorSign": "•",
   "diagnostic.warningSign": "!",
   "diagnostic.infoSign": "•",
+  "diagnostic.autoRefresh": true,
+  "diagnostic.checkCurrentLine": true,
   "typescript.updateImportsOnFileMove.enable": true,
   "javascript.updateImportsOnFileMove.enable": true,
   "coc.preferences.bracketEnterImprove": true,
   "coc.preferences.messageLevel": "error",
-  "coc.preferences.formatOnSaveFiletypes": [
+  "2coc.preferences.formatOnSaveFiletypes": [
     "css",
     "markdown",
     "typescript",
@@ -24,5 +29,9 @@
   "emmet.showSuggestionsAsSnippets": true,
   "emmet.excludeLanguages": [
     "markdown"
-  ]
+  ],
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.format.insertSpaceAfterConstructor": true,
+  "signature.target": "echo",
+  "hover.target": "echo"
 }
